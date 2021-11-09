@@ -1,0 +1,20 @@
+version: 0.2
+
+env:
+  variables:
+    TF_IN_AUTOMATION: true
+
+phases:
+  install:
+    commands:
+      - wget --no-verbose https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      - unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/bin
+      - cd ${RESOURCES_PATH}
+      - terraform init -input=false -no-color 
+  build:
+    commands:
+      - echo "Plan is located at $CODEBUILD_SRC_DIR_plan_output/plan.out"
+      - terraform apply -auto-approve -input=false -no-color -state=$CODEBUILD_SRC_DIR_plan_output/plan.out
+cache:
+  paths:
+    - '.terraform/**/*'

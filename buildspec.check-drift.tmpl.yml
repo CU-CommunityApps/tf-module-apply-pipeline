@@ -1,0 +1,19 @@
+version: 0.2
+
+env:
+  variables:
+    TF_IN_AUTOMATION: true
+
+phases:
+  install:
+    commands:
+      - wget --no-verbose https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      - unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/bin
+      - cd ${RESOURCES_PATH}
+      - terraform init -input=false -no-color 
+  build:
+    commands:
+      - terraform plan -input=false -detailed-exitcode -no-color -refresh=true -lock=false
+cache:
+  paths:
+    - '.terraform/**/*'

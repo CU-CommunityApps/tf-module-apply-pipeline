@@ -64,3 +64,8 @@ variable "github_webhook_enabled" {
   type    = bool
   default = false
 }
+
+variable "tf_log" {
+  type    = string
+  default = null
+}

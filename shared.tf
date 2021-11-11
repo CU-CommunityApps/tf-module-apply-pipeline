@@ -202,7 +202,7 @@ resource "aws_iam_policy" "build-policy" {
         "Action": [
             "iam:GetPolicy"
         ],
-        "Resource": ${var.resource_plan_policy_arns}
+        "Resource": ${jsonencode(var.resource_plan_policy_arns)}
     }
   ]
 }

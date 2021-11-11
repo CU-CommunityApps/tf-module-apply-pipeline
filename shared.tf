@@ -200,7 +200,8 @@ resource "aws_iam_policy" "build-policy" {
         "Sid": "IamReadPolicy",
         "Effect": "Allow",
         "Action": [
-            "iam:GetPolicy"
+            "iam:GetPolicy",
+            "iam:GetPolicyVersion"
         ],
         "Resource": ${jsonencode(var.resource_plan_policy_arns)}
     }

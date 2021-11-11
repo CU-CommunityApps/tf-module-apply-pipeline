@@ -195,6 +195,14 @@ resource "aws_iam_policy" "build-policy" {
             "s3:PutObject"
         ],
         "Resource": "arn:aws:s3:::${var.terraform_state_bucket}/${var.terraform_state_key}"
+    },
+    {
+        "Sid": "IamReadPolicy",
+        "Effect": "Allow",
+        "Action": [
+            "iam:GetPolicy"
+        ],
+        "Resource": ${var.resource_plan_policy_arns}
     }
   ]
 }

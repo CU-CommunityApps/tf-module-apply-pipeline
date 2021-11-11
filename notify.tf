@@ -75,7 +75,7 @@ data "aws_iam_policy_document" "sns-topic-policy" {
 }
 
 module "sns_teams_relay" {
-  source = "github.com/CU-CommunityApps/tf-module-sns-teams-relay.git?ref=v1.0.0"
+  source = "github.com/CU-CommunityApps/tf-module-sns-teams-relay.git?ref=v1.1.0"
   
   tags               = var.global_tags
   namespace          = var.namespace

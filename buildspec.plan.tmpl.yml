@@ -3,6 +3,9 @@ version: 0.2
 env:
   variables:
     TF_IN_AUTOMATION: true
+    %{ if tf_log != null }
+    TF_LOG: ${tf_log}
+    %{ endif }
 
 phases:
   install:

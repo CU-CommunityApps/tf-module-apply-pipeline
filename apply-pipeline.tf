@@ -117,6 +117,7 @@ resource "aws_codebuild_project" "build-plan" {
                   {
                     TERRAFORM_VERSION = var.terraform_version
                     RESOURCES_PATH    = var.resources_path
+                    tf_log            = var.tf_log
                   }
                 )
   }
@@ -159,6 +160,7 @@ resource "aws_codebuild_project" "build-apply" {
                   {
                     TERRAFORM_VERSION = var.terraform_version
                     RESOURCES_PATH    = var.resources_path
+                    tf_log            = var.tf_log
                   }
                 )
   }

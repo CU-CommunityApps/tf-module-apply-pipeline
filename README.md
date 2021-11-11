@@ -2,23 +2,40 @@
 
 Terraform module to create Terraform drift, plan, and apply CodePipelines.
 
+## Resources Created
+
+- CodePipeline to run Terraform plan/apply operations. This pipeline contains a manual review step.
+- CodePipeline to run drift check on target resources. This pipeline is scheduled with a cron expression.
+- CodeBuld projects to support the CodePipelines
+- IAM Policies and Roles to support the CodePipelines
+- Notifications of Pipeline/Build status sent to Teams
+
 ## TO DO
 
 - Integrate the full script from `tf-plan.sh` into `buildspec.plan.tmpl.yml`. This script stops the pipeline when there are no changes to be applied.
-- Documentation!
 - Add configuration options. E.g., send notifications to existing SNS topic instead of creating a new one.
+- More documentation
 
 ## Change Log
-- 1.0.0
-  - Initial release that is lacking in documentation and subtlety. 
+
+### 2.0.0
+- added TF_LOGs configuration option
+- added `iam:GetPolicy` and `iam:GetPolicyVersion` privileges for the policies passed in as `resource_plan_policy_arns` and `resource_apply_policy_arns`
+- bump `tf-module-sns-teams-relay` version to 1.1.0
+- removed unused `environment` variable
+- rename `build_cron` variable to `drift_cron`
+- added minimal documentation
+
+### 1.0.0
+- Initial release that is lacking in documentation and subtlety
 
 ## Variables
 
-TBD
+See descriptions in `variables.tf`.
 
 ## Outputs
 
-TBD
+None.
 
 ## Example Use
 
@@ -40,7 +57,6 @@ module "apply_pipeline" {
   terraform_state_key    = "prod/tf-example/resources/terraform.state"
   github_repo = "CU-CommunityApps/tf-example"
   git_branch  = "main"
-  environment = "dev"
   resource_plan_policy_arns = [
     "arn:aws:iam::123456789012:policy/tf-example-plan-privs"
   ]

@@ -100,7 +100,7 @@ resource "aws_codebuild_project" "build-drift" {
 resource "aws_cloudwatch_event_rule" "build-drift-trigger" {
   name                = "${local.build_project_name_drift}-trigger"
   description         = "Trigger daily drift check"
-  schedule_expression = var.build_cron
+  schedule_expression = var.drift_cron
 }
 
 resource "aws_cloudwatch_event_target" "build-drift-trigger" {

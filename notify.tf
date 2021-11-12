@@ -1,5 +1,7 @@
 resource "aws_sns_topic" "notify-topic" {
   name = "${local.build_project_name_base}-notify"
+
+  tags = var.global_tags
 }
 
 resource "aws_sns_topic_policy" "default" {
@@ -72,13 +74,4 @@ data "aws_iam_policy_document" "sns-topic-policy" {
       identifiers = ["codestar-notifications.amazonaws.com"]
     }
   }
-}
-
-module "sns_teams_relay" {
-  source = "github.com/CU-CommunityApps/tf-module-sns-teams-relay.git?ref=v1.1.0"
-  
-  tags               = var.global_tags
-  namespace          = var.namespace
-  teams_webhook_url  = var.teams_webhook_url
-  sns_topic_arn_list = [ aws_sns_topic.notify-topic.arn ]
 }

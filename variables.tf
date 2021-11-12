@@ -1,9 +1,3 @@
-variable "teams_webhook_url" {
-  type        = string
-  sensitive   = true
-  description = "URL of the Teams webhook where notifications should be sent"
-}
-
 variable "github_codestarconnections_connection_arn" {
   type        = string
   description = "ARN of the Github.com configuration that has read access to the git repo named in github_repo"

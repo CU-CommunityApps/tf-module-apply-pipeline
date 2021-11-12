@@ -2,6 +2,7 @@
 resource "aws_codepipeline" "apply-pipeline" {
   name     = "${var.namespace}-apply-pipeline"
   role_arn = aws_iam_role.codepipeline_role.arn
+  tags     = var.global_tags
 
   artifact_store {
     location = aws_s3_bucket.codepipeline_bucket.bucket
@@ -86,17 +87,20 @@ resource "aws_codepipeline" "apply-pipeline" {
 resource "aws_cloudwatch_log_group" "build-plan" {
   name              = local.build_project_name_plan
   retention_in_days = 90
+  tags              = var.global_tags
 }
 
 resource "aws_cloudwatch_log_group" "build-apply" {
   name              = local.build_project_name_apply
   retention_in_days = 90
+  tags              = var.global_tags
 }
 
 resource "aws_codebuild_project" "build-plan" {
   name          = local.build_project_name_plan
   build_timeout = "10"
   service_role  = aws_iam_role.build-role.arn
+  tags          = var.global_tags
 
   artifacts {
     type = "CODEPIPELINE"
@@ -140,6 +144,7 @@ resource "aws_codebuild_project" "build-apply" {
   name          = local.build_project_name_apply
   build_timeout = "10"
   service_role  = aws_iam_role.apply-role.arn
+  tags              = var.global_tags
 
   artifacts {
     type = "CODEPIPELINE"
@@ -195,6 +200,7 @@ resource "aws_codestarnotifications_notification_rule" "apply-pipeline-notify" {
 
   name     = "${aws_codepipeline.apply-pipeline.name}-notify-teams"
   resource = aws_codepipeline.apply-pipeline.arn
+  tags     = var.global_tags
 
   target {
     address = aws_sns_topic.notify-topic.arn

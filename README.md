@@ -18,6 +18,11 @@ Terraform module to create Terraform drift, plan, and apply CodePipelines.
 
 ## Change Log
 
+### 3.0.0
+- add output consisting of the ARN of SNS topic where CodePipeline and CodeBuild notifications are sent
+- remove use of `tf-module-sns-teams-relay` module
+- add tags to all resources that can be tagged
+
 ### 2.0.0
 - added TF_LOGs configuration option
 - added `iam:GetPolicy` and `iam:GetPolicyVersion` privileges for the policies passed in as `resource_plan_policy_arns` and `resource_apply_policy_arns`
@@ -46,9 +51,6 @@ module "apply_pipeline" {
   
   namespace = "tf-example"
   
-  # production
-  teams_webhook_url = "https://cornellprod.webhook.office.com/..."
-
   # cornell-cloud-devops-GH-user
   github_codestarconnections_connection_arn = "arn:aws:codestar-connections:us-east-1:123456789012:connection/abcdef123456"
 

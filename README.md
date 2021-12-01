@@ -18,6 +18,9 @@ Terraform module to create Terraform drift, plan, and apply CodePipelines.
 
 ## Change Log
 
+### 3.0.1
+- Added tags to `build-plan` CodeBuild project, which was missed in v3.0.0 release.
+
 ### 3.0.0
 - add output consisting of the ARN of SNS topic where CodePipeline and CodeBuild notifications are sent
 - remove use of `tf-module-sns-teams-relay` module

@@ -56,6 +56,7 @@ resource "aws_codebuild_project" "build-drift" {
   name          = local.build_project_name_drift
   build_timeout = "10"
   service_role  = aws_iam_role.build-role.arn
+  tags          = var.global_tags
 
   artifacts {
     type = "CODEPIPELINE"

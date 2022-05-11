@@ -10,10 +10,14 @@ data "aws_caller_identity" "current" {
 
 resource "aws_s3_bucket" "codepipeline_bucket" {
   bucket = "${var.namespace}-pipeline-resources"
-  acl    = "private"
   tags = merge(var.global_tags, {
     "cit:policy5.10-risk-level" = "medium"
   })
+}
+
+resource "aws_s3_bucket_acl" "codepipeline_bucket" {
+  bucket = aws_s3_bucket.codepipeline_bucket.id
+  acl    = "private"
 }
 
 resource "aws_iam_role" "codepipeline_role" {

@@ -21,7 +21,7 @@ Terraform module to create Terraform drift, plan, and apply CodePipelines.
 ### 3.2.0
 - added minimum version of v4.9.0 for AWS provider
 - added `aws_s3_bucket_acl` resource
-  - This will require that the existing `aws_s3_bucket_aclconfiguration` be imported: `terraform import module.example.aws_s3_bucket_acl.codepipeline_bucket bucket-name,private,private`- 
+  - This will require that the existing `aws_s3_bucket_aclconfiguration` be imported: `terraform import module.example.aws_s3_bucket_acl.codepipeline_bucket bucket-name,private,private` 
 - removed `acl` property from `aws_s3_bucket`
 
 ### 3.1.0

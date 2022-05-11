@@ -86,13 +86,13 @@ resource "aws_codepipeline" "apply-pipeline" {
 
 resource "aws_cloudwatch_log_group" "build-plan" {
   name              = local.build_project_name_plan
-  retention_in_days = 90
+  retention_in_days = var.log_retention_in_days
   tags              = var.global_tags
 }
 
 resource "aws_cloudwatch_log_group" "build-apply" {
   name              = local.build_project_name_apply
-  retention_in_days = 90
+  retention_in_days = var.log_retention_in_days
   tags              = var.global_tags
 }
 

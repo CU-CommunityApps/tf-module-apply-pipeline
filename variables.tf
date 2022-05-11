@@ -73,3 +73,9 @@ variable "tf_log" {
   description = "value for the TF_LOG variable in Terraform plan/apply operations"
   default     = null
 }
+
+variable "log_retention_in_days" {
+  type        = number
+  description = "number of days to retain CodePipeline and CodeBuild logs"
+  default     = 90
+}

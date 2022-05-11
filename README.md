@@ -18,6 +18,10 @@ Terraform module to create Terraform drift, plan, and apply CodePipelines.
 
 ## Change Log
 
+### 3.1.0
+- added global tags to `build-drift` CloudWatch log group
+- added `log_retention_in_days` variable to allow customization of how long logs are kept
+
 ### 3.0.1
 - Added tags to `build-plan` CodeBuild project, which was missed in v3.0.0 release.
 

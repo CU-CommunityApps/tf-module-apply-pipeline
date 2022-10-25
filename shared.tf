@@ -221,7 +221,7 @@ POLICY
 
 resource "aws_iam_policy" "apply-policy" {
   name = "${var.namespace}-apply-policy"
-  tags = global_tags
+  tags = var.global_tags
 
   policy = <<POLICY
 {

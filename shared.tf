@@ -22,6 +22,7 @@ resource "aws_s3_bucket_acl" "codepipeline_bucket" {
 
 resource "aws_iam_role" "codepipeline_role" {
   name = "${var.namespace}-pipeline-role"
+  tags = var.global_tags
 
   assume_role_policy = <<EOF
 {
@@ -86,6 +87,7 @@ EOF
 
 resource "aws_iam_role" "build-role" {
   name = "${var.namespace}-build-role"
+  tags = var.global_tags
 
   assume_role_policy = <<EOF
 {
@@ -106,6 +108,7 @@ EOF
 
 resource "aws_iam_role" "apply-role" {
   name = "${var.namespace}-apply-role"
+  tags = var.global_tags
 
   assume_role_policy = <<EOF
 {
@@ -146,6 +149,7 @@ EOF
 
 resource "aws_iam_policy" "build-policy" {
   name = "${var.namespace}-build-policy"
+  tags= var.global_tags
 
   policy = <<POLICY
 {
@@ -217,6 +221,7 @@ POLICY
 
 resource "aws_iam_policy" "apply-policy" {
   name = "${var.namespace}-apply-policy"
+  tags = global_tags
 
   policy = <<POLICY
 {

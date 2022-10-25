@@ -119,6 +119,7 @@ resource "aws_cloudwatch_event_target" "build-drift-trigger" {
 
 resource "aws_iam_role" "build-drift-pipeline-trigger-role" {
   name = "${var.namespace}-build-drift-pipeline-trigger-role"
+  tags = var.global_tags
 
   assume_role_policy = <<EOF
 {

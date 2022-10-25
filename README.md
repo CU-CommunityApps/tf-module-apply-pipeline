@@ -18,6 +18,9 @@ Terraform module to create Terraform drift, plan, and apply CodePipelines.
 
 ## Change Log
 
+### 3.3.0
+- add tags to IAM role and policy resources
+
 ### 3.2.0
 - added minimum version of v4.9.0 for AWS provider
 - added `aws_s3_bucket_acl` resource
